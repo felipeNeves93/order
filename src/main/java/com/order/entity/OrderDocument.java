@@ -27,7 +27,15 @@ public class OrderDocument {
     @DynamoDBAttribute
     private List<ProductDocument> products;
 
-    public void calculatePrice() {
+    public double getPrice() {
+        if (!this.products.isEmpty() && price == 0) {
+            calculatePrice();
+        }
+
+        return this.price;
+    }
+
+    private void calculatePrice() {
         this.price = this.products.stream()
                 .mapToDouble(o -> o.getPrice() * o.getAmount())
                 .sum();

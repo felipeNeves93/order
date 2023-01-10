@@ -13,7 +13,6 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderDocument save(OrderDocument order) {
-        order.calculatePrice();
         return orderRepository.save(order);
     }
 }
