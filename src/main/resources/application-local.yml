@@ -1,0 +1,9 @@
+server:
+  port: 8888
+
+amazon:
+  dynamodb:
+    endpoint: http://localhost:8000
+  aws:
+    accesskey: key
+    secretkey: secret
