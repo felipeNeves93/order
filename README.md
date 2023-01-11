@@ -18,4 +18,8 @@
 inside the *docker* folder
   * To run the kafka, broker and schema registry, run the following command ***docker-compose -f kafka-compose.yml up -d***
     inside the *docker* folder
+
+
+* **Useful Commands**
+  * **Create order-created topic:** *docker exec -it broker kafka-topics --bootstrap-server broker:9092 --create --topic order-created --partitions 3 -replication-factor 1* 
   

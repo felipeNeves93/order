@@ -1,4 +1,4 @@
-package com.order.config;
+package com.order.config.kafka;
 
 import io.confluent.kafka.serializers.KafkaAvroSerializerConfig;
 import org.apache.avro.specific.SpecificRecord;
