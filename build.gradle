@@ -45,6 +45,7 @@ dependencies {
     implementation group: 'com.github.derjust', name: 'spring-data-dynamodb', version: '5.1.0'
 
     // Kafka & Avro
+    implementation group: 'org.springframework.kafka', name: 'spring-kafka', version: '2.7.7'
     implementation group: 'org.apache.kafka', name: 'kafka-clients', version: '2.6.0'
     implementation group: 'com.google.code.gson', name: 'gson', version: '2.10'
     implementation group: 'org.apache.avro', name: 'avro', version: '1.11.0'
