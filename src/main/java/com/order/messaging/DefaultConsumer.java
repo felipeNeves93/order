@@ -2,7 +2,7 @@ package com.order.messaging;
 
 import org.apache.avro.specific.SpecificRecord;
 
-public interface DefaultConsumer<T extends SpecificRecord> {
+public interface DefaultConsumer {
 
-    void consume(T avro);
+    void consume(SpecificRecord payload);
 }

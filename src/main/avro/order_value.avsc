@@ -16,9 +16,8 @@
       "type": "double"
     },
     {
-      "name": "Customer",
+      "name": "customer",
       "type": {
-        "namespace": "com.order.avro.orders",
         "name": "customer",
         "type": "record",
         "fields": [

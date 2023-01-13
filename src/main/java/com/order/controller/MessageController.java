@@ -1,12 +1,12 @@
 package com.order.controller;
 
+import com.order.avro.orders.OrderValue;
 import com.order.controller.responses.ApiResponse;
 import com.order.dto.OrderDTO;
-import com.order.entity.OrderDocument;
-import com.order.service.OrderService;
+import com.order.messaging.service.MessageService;
 import lombok.RequiredArgsConstructor;
+import org.apache.avro.specific.SpecificRecord;
 import org.modelmapper.ModelMapper;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,23 +14,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/orders")
+@RequestMapping("/messages")
 @RequiredArgsConstructor
-public class OrderController {
+public class MessageController {
 
     private final ModelMapper modelMapper;
-    private final OrderService orderService;
+    private final MessageService<SpecificRecord> messageService;
 
     @PostMapping
     public ResponseEntity<ApiResponse<OrderDTO>> save(@RequestBody OrderDTO dto) {
-        var convertedOrder = modelMapper.map(dto, OrderDocument.class);
-        var savedOrder = orderService.save(convertedOrder);
-
-        return ResponseEntity.ok(ApiResponse.<OrderDTO>builder()
-                .object(modelMapper.map(savedOrder, OrderDTO.class))
-                .status(HttpStatus.CREATED)
-                .errorMessage(null)
-                .build());
+        var convertedOrder = modelMapper.map(dto, OrderValue.class);
+        messageService.send("order-created", convertedOrder);
+        return ResponseEntity.ok().build();
     }
 
 }
