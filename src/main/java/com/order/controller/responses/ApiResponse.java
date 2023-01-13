@@ -1,4 +1,4 @@
-package com.order.controller;
+package com.order.controller.responses;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
